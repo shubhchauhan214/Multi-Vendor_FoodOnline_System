@@ -1,0 +1,217 @@
+@keyframes show-toast{
+    0% {bottom: -100%}
+    20% {bottom: 100px}
+    80% {bottom: 100px}
+    100% {bottom: -100%}
+}
+
+.show-notification{
+    position: fixed;
+    bottom: 100%;
+    right: 20px;
+    animation-name: show-toast;
+    animation-duration: 8s;
+    z-index: 99;
+}
+
+.btn{
+    padding: 5px 1.75em;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.custom-icon{
+    min-width: 14px;
+    display: inline-block;
+    margin-right: 5px;
+    color: #fff;
+    font-size: 14px;
+    vertical-align: middle;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    line-height: 13px;
+}
+
+.responsive-table:after {
+    content: '';
+    clear: both;
+    line-height: 0;
+    display: table;
+}
+
+.categories-order h4 {
+    font-size: 14px !important;
+    line-height: 20px !important;
+    margin-bottom: 0;
+}
+
+h4, h4 a {
+    font: 700 Normal 18px/24px "Montserrat", sans-serif !important;
+    letter-spacing: 1px !important;
+    text-transform: capitalize !important;
+    color: #000000 !important;
+}
+
+.categories-order h4 + h5 {
+    font-size: 11px !important;
+    float: left;
+    margin-bottom: 0;
+    color: #a2a2a2 !important;
+    line-height: 14px !important;
+    font-weight: 400 !important;
+}
+
+.cart-holder ul{
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.order-detail-options.order-total li{
+	display: block;
+	border-bottom: 1px solid #eaedf2;
+	padding-bottom: 6px;
+	margin: 0 0 6px 0;
+	list-style: none;
+	padding: 0px;
+	box-shadow: none;
+	border: 0;
+	font-size: 12px;
+	line-height: 9px;
+	vertical-align: top;
+}
+
+.order-detail-options.order-total li strong{
+	color: #767676;
+	font-weight: 600;
+	line-height: 22px;
+	float: left;
+	letter-spacing: 0;
+	font-size: 12px;
+	text-transform: uppercase;
+	margin-right: 10px;
+}
+
+.order-detail-options.order-total li span{
+	display: block;
+	float: right;
+	color: #767676;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 22px;
+	padding-left: 0;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.empty-cart-img{
+    width: 271px;
+    height: 256px;
+    background-image: url('/static/extra-images/empty_cart.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+._3Y9ZP{
+    margin-top: 24px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #535665;
+    padding-left: 50px;
+}
+
+.d7jCU {
+    margin-top: 8px;
+    color: #7e808c;
+}
+
+._3pgCg {
+    display: block;
+    margin-top: 30px;
+    padding: 11px 20px;
+    text-transform: uppercase;
+    background-color: #c33332;
+    color: #fff !important;
+    font-weight: 600;
+    cursor: pointer;
+    border: 0;
+    font-size: 15px;
+    text-align: center;
+}
+
+#cart-content > div > a:hover{
+    text-decoration: none;
+}
+
+._1dcmE{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    display: block;
+    float: left;
+    margin-right: 15px;
+}
+
+.u1PgV{
+    margin-left: 14px;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 50px;
+}
+
+.V7Usk{
+    font-size: 20px;
+    color: #282c3f;
+    font-weight: 600;
+}
+
+._2ofXa{
+    font-size: 13px;
+    color: #686b78;
+}
+
+.block{
+    display: block;
+}
+
+#opening_hours select{
+    padding: 5px 10px;
+}
+
+@media only screen and (max-width: 480px){
+    a.get-start-btn {
+        display: block;
+        margin-top: 15px !important;
+        margin-left: 0 !important;
+    }
+
+    .main-search-bar{
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+        background-position: left !important;
+    }
+
+    .user-dashboard.loader-holder{
+        width: 100% !important;
+    }
+
+    .order_complete_items tr td:first-child img {
+        width: 60px !important; /* For example, making sure the image doesn't exceed its container */
+        height: 60px !important;
+    }
+
+    .order_complete_items tr td:nth-child(3) {
+        /* Your styles here */
+        font-size: 12px !important; /* For example, change text color to red */
+        /* line-height: 1 !important; */
+    }
+}
+
+table td, table th{
+    line-height: 1rem !important;
+}

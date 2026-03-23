@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main Section Start -->
+<div class="main-section pt-5 pb-5">
+    <div class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="cart-holder" style="background: #fff; padding: 25px 30px 30px;
+                border-radius: 5px; width: 100%;">
+
+                    <div class="text-center p-5" id="empty-cart" style="display:none;">
+                        <div class="empty-cart-img"></div>
+                        <div class="_3Y9ZP">Your cart is empty.</div>
+                        <div class="d7jCU">You can go to home page to view more restaurants</div>
+                        <a href="{% url 'marketplace' %}" class="_3pgCg">See restaurants near you</a>
+                    </div>
+
+                    <div id="cart-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        {% if cart_items %}
+
+
+                            <a href="{% url 'vendor_detail' cart_items.0.products.vendor.vendor_slug %}" class="block" style="color: black;text-decoration: none;
+                            padding-bottom: 20px;min-height: 90px;padding-top: 20px;">
+                            <span class="_1dcmE">
+                                <img src="{{ cart_items.0.products.vendor.user_profile.profile_picture.url }}"
+                                                         class="img-list wp-post-image" width="50" height="50" alt="">
+                            </span>
+                            <span class="u1PgV block">
+                                <div class="V7Usk">
+                                    {{ cart_items.0.products.vendor }}
+                                </div>
+                                <div class="_2ofXa">{{ cart_items.0.products.vendor.user_profile.address }}</div>
+                            </span>
+                            </a>
+
+                            <div class="responsive-table">
+                                <ul class="categories-order table-generic">
+                                    <li class="order-heading-titles" style="background: #fafafa;">
+                                        <div>Products</div>
+                                        <div>Quantity</div>
+                                        <div style="text-align: end;">Price per</div>
+                                    </li>
+                                    {% for item in cart_items %}
+                                    <li id="cart-item-{{item.id}}" class="order-heading-titles">
+                                        <div>
+                                            <h4>{{ item.products.category }}</h4>
+                                            <h5>{{ item.products }}</h5>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="add_to_cart" data-id="{{ item.products.id }}"
+                                               data-url="{% url 'add_to_cart' item.products.id %}">
+                                                <i class="icon-plus4 text-color">
+                                                </i>
+                                            </a>
+                                            <label id="qty-{{ item.products.id }}" style="padding-left: 14px;">
+                                                {{ item.quantity }}
+                                            </label>
+                                            <a href="#" class="remove_from_cart" data-id="{{ item.products.id }}"
+                                                data-url="{% url 'remove_from_cart' item.products.id %}"
+                                                id="{{ item.id }}">
+                                                <i class="icon-minus text-color" style="margin-left: 14px;">
+                                                </i>
+                                            </a>
+                                            <!-- Delete button-->
+                                            <a href="#" class="delete_from_cart" data-id="{{ item.id }}"
+                                                data-url="{% url 'delete_from_cart' item.id %}">
+                                                <i class="icon-delete text-color" style="margin-left: 14px;">
+                                                </i>
+                                            </a>
+                                        </div>
+                                        <div><span class="category-price">₹{{ item.products.price }}</span></div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                            <!-- Order Summary -->
+                            <div class="row" style="padding-top: 10px;">
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <h3>Order Total</h3>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"
+                                     style="background-color: #f1f3f8;
+                                            margin: 0 0 12px;
+                                            font-size: 12px;
+                                            color: #2f313a;
+                                            padding: 10px 15px;
+                                            line-height: normal;
+                                            font-family: 'Montserrat', sans-serif;
+                                            border-radius: 5px;">
+                                    <ul class="order-detail-options order-total">
+                                        <li class="created-date">
+                                            <strong>Subtotal:</strong>
+                                            <span id="subtotal">{{ subtotal }}</span>
+                                            <span>₹</span>
+                                        </li>
+
+                                        <div style="clear:both;"></div>
+
+                                        <li class="order-type">
+                                            <strong>
+                                                Pick Up Fee: </strong>
+                                            <span id="pickup-fee">{{ pickup_fee }}</span>
+                                            <span>₹</span>
+                                        </li>
+
+                                        <div style="clear:both;"></div>
+
+                                        {% for key, value in tax_dict.items %}
+                                            {% for i, j in value.items %}
+                                                <li class="order-type">
+                                                    <strong>{{ key }} ({{ i }}%)</strong>
+                                                    <span id="tax-on-cart">{{ j }}</span>
+                                                    <span>₹</span>
+                                                </li>
+
+                                                <div style="clear:both;"></div>
+                                            {% endfor %}
+                                        {% endfor %}
+
+                                        <li class="order-type total-price" style="padding-top: 5px;">
+                                            <strong>Total:</strong>
+                                            <span id="grand-total">{{ grand_total }}</span>
+                                            <span>₹</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pr-0 pl-0">
+                                    <a href="{% url 'checkout' %}" class="btn bgcolor w-100 mt-3 p-2" style="color: #fff;">
+                                        PROCEED TO CHECKOUT
+                                    </a>
+                                </div>
+
+                            </div>
+                        {% else %}
+
+                            <div class="text-center p-5">
+                                <div class="empty-cart-img"></div>
+                                <div class="_3Y9ZP">Your cart is empty.</div>
+                                <div class="d7jCU">You can go to home page to view more restaurants</div>
+                                <a href="{% url 'marketplace' %}" class="_3pgCg">See restaurants near you</a>
+                            </div>
+
+                        {% endif %}
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Section End -->
+
+
+
+{% endblock %}

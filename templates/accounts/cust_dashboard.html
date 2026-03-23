@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'includes/alerts.html' %}
+<!-- Main Section Start -->
+<div class="main-section">
+
+    <!-- Load the cover part -->
+    {% include 'customers/cover.html' %}
+
+    <div class="page-section account-header buyer-logged-in">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <!-- Load the sidebar here -->
+                    {% include 'includes/c_sidebar.html' %}
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="user-dashboard loader-holder">
+                        <div class="user-holder">
+
+                            <h5 class="text-uppercase">
+                                Overview
+                            </h5>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Total Orders
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <a href="#"><h5 class="card-title">{{ orders_count }}</h5></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Logged in as: <b>{{ user.email }}</b>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <a href="{% url 'cust_profile' %}"><h5 class="card-title"><i class="icon-edit2"></i> Edit Profile</h5></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <br>
+
+                            <h5 class="text-uppercase">
+                                Recent Orders
+                            </h5>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="user-orders-list">
+                                        <div class="responsive-table">
+                                            <ul class="table-generic">
+                                                <li class="order-heading-titles">
+                                                    <div>Order id</div>
+                                                    <div>Date</div>
+                                                    <div>Total Price</div>
+                                                    <div>Charges</div>
+                                                    <div>Received</div>
+                                                    <div>Action</div>
+                                                </li>
+
+                                                {% for order in orders  %}
+
+                                                <li class="order-heading-titles">
+                                                    <div><b><a href="{% url 'order_details' order.order_number %}" class="text-dark">{{ order.order_number }}</a></b></div>
+                                                    <div>{{ order.created_at }}</div>
+                                                    <div>${{ order.order_val}}</div>
+                                                    <div>${{ order.total_tax }}</div>
+                                                    <div>${{ order.total }}</div>
+                                                    <div><a href="{% url 'order_details' order.order_number %}" class="btn btn-danger">Details</a></div>
+                                                </li>
+
+                                                {% endfor %}
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Section End -->
+
+
+{% endblock %}
